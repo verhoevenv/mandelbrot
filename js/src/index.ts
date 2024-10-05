@@ -88,7 +88,8 @@ function color_map(esc_time: number | undefined, max_iterations: number): string
     if (!esc_time) {
         return "black";
     }
-    return `hsl(${esc_time} 30% 60%)`
+    let h = Math.pow((esc_time / max_iterations) * 360, 2) % 360;
+    return `hsl(${h} 30% 60%)`
 }
 
 function draw_pixel(ctx: CanvasRenderingContext2D, row: number, col: number, color: string) {
@@ -97,8 +98,8 @@ function draw_pixel(ctx: CanvasRenderingContext2D, row: number, col: number, col
 }
 
 let bounds: Bounds = {
-    top_left: complex(-2, 2),
-    bottom_right: complex(2, -2),
+    top_left: complex(-2.1, 1.3),
+    bottom_right: complex(0.5, -1.3),
 };
 
 
@@ -133,7 +134,7 @@ function dive_into_butt(): number[] {
 }
 
 const canvas = document.getElementById("canvas")! as HTMLCanvasElement;
-draw_fractal(canvas, seahorses);
+draw_fractal(canvas, bounds);
 
 // let approxs = dive_into_seahorses();
 // console.log(approxs)
