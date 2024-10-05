@@ -50,7 +50,7 @@ function fn_next(fn_prev: Complex, c: Complex) {
 function escape_time(fn: Generator<Complex, never, unknown>, max_it: number): number | undefined {
     for (let it = 1; it <= max_it; it++) {
         let result = fn.next();
-        if (abs_squared(result.value) > 2) {
+        if (abs_squared(result.value) > 4) {
             return it;
         }
     }
